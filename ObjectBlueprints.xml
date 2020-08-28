@@ -1,5 +1,7 @@
 <objects>
-    <object Name="helado_Mycopei_Mycopei Terrain" Inherits="TerrainJungle" />
+    <object Name="helado_Mycopei_Mycopei Terrain" Inherits="TerrainJungle">
+        <tag Name="NoBiomes" />
+    </object>
 
     <object Name="helado_Mycopei_Fungal Influence Widget" Inherits="Widget">
         <part Name="helado_Mycopei_FungalInfluence" />

@@ -1,6 +1,14 @@
 <worlds>
     <world Name="JoppaWorld">
         <cell Name="helado_Mycopei_Mycopei" Inherits="Jungle" ApplyTo="helado_Mycopei_Mycopei Terrain" Mutable="false">
+            <zone Level="10" x="0-2" y="0-2" Name="jungle" HasWeather="true" WindSpeed="0-60" WindDirections="N,NW,NW,W,W,SW,S,SE" WindDuration="50-3000">
+                <builder Class="FactionEncounters" Population="GenericFactionPopulation"></builder>
+                <builder Class="helado_Mycopei_FungalInfluence"></builder>
+                <builder Class="Music" Track="Overworld1" Chance="10"></builder>
+
+                <encounter Table="Jungle" Amount="low"></encounter>
+            </zone>
+
             <zone Level="10" x="1" y="1" Name="jungle clearing" DisableForcedConnections="Yes" HasWeather="true" WindSpeed="0-60" WindDirections="N,NW,NW,W,W,SW,S,SE" WindDuration="50-3000">
                 <builder Class="helado_Mycopei_FungalInfluence"></builder>
                 <builder Class="Music" Track="Overworld1"></builder>

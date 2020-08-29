@@ -1,10 +1,21 @@
 namespace XRL.World.Parts
 {
+    using static XRL.Core.XRLCore;
     using XRL.World.Effects;
 
     public class helado_Mycopei_FungalDrone : IPart
     {
-        public bool ReceivedFungalInfluenceRecently = false;
+        // The maximum permitted number of turns before going inert from lack of fungal influence.
+        public const long FUNGAL_INFLUENCE_TURN_ALLOWANCE = 1;
+        // The game turn on which we last received fungal influence.
+        public long TurnLastReceivedFungalInfluence = 0;
+
+        public bool FungalInfluenceActive()
+        {
+            return System.Math.Abs(
+                CurrentTurn - TurnLastReceivedFungalInfluence
+            ) <= FUNGAL_INFLUENCE_TURN_ALLOWANCE;
+        }
 
         public override bool WantEvent(int id, int cascade)
         {
@@ -20,19 +31,18 @@ namespace XRL.World.Parts
 
             if (brain != null)
             {
-                if (!ReceivedFungalInfluenceRecently && !ParentObject.HasEffect(typeof(helado_Mycopei_FungalDroneDormant)))
+                if (!FungalInfluenceActive() && !ParentObject.HasEffect(typeof(helado_Mycopei_FungalDroneDormant)))
                 {
                     ParentObject.ApplyEffect(new helado_Mycopei_FungalDroneDormant());
                 }
             }
 
-            ReceivedFungalInfluenceRecently = false;
             return true;
         }
 
         public bool HandleEvent(helado_Mycopei_FungalInfluenceEvent @event)
         {
-            ReceivedFungalInfluenceRecently = true;
+            TurnLastReceivedFungalInfluence = CurrentTurn;
             return true;
         }
     }

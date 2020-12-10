@@ -97,7 +97,7 @@ namespace XRL.World.Effects
 
         public override bool Apply(GameObject go)
         {
-            if (ThePlayer.HasLOSTo(Object: go))
+            if (go.IsVisible())
             {
                 XDidY(
                     what: go,
@@ -112,7 +112,7 @@ namespace XRL.World.Effects
 
         public override void Remove(GameObject go)
         {
-            if (ThePlayer.HasLOSTo(Object: go))
+            if (go.IsVisible())
             {
                 XDidY(
                     what: go,

@@ -1,11 +1,21 @@
 <objects>
+    <!-- # Physical Objects -->
+
     <object Name="helado_Mycopei_Fungal Drone" Inherits="BaseHumanoid">
         <part Name="helado_Mycopei_FungalDrone" />
     </object>
 
+    <object Name="helado_Mycopei_Fungal Wall" Inherits="MushroomFlesh">
+        <tag Name="PaintWith" Value="helado_Mycopei_Fungal Wall" />
+    </object>
+
+    <!-- # Terrain -->
+
     <object Name="helado_Mycopei_Mycopei Terrain" Inherits="TerrainJungle">
         <tag Name="NoBiomes" />
     </object>
+
+    <!-- # Widgets -->
 
     <object Name="helado_Mycopei_Fungal Influence Widget" Inherits="Widget">
         <part Name="helado_Mycopei_FungalInfluence" />

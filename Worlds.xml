@@ -15,6 +15,10 @@
 
                 <map FileName="helado_Mycopei_Mycopei Surface.rpm" />
             </zone>
+
+            <zone Level="11" x="1" y="1" Name="fungal cave">
+                <builder Class="helado_Mycopei_FungalCave" />
+            </zone>
         </cell>
     </world>
 </worlds>

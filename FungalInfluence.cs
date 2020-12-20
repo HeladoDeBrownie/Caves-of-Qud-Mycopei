@@ -13,7 +13,8 @@ namespace XRL.World.Parts
 
         public override bool HandleEvent(EndTurnEvent @event)
         {
-            foreach (var go in ParentObject.CurrentZone.GetObjects()) {
+            foreach (var go in ParentObject.CurrentZone.GetObjects())
+            {
                 go.HandleEvent(FungalInfluenceEvent);
             }
 
@@ -28,11 +29,13 @@ namespace XRL.World
     {
         public static new readonly int ID = MinEvent.AllocateID();
 
-        public helado_Mycopei_FungalInfluenceEvent() {
+        public helado_Mycopei_FungalInfluenceEvent()
+        {
             base.ID = ID;
         }
 
-        public override bool WantInvokeDispatch() {
+        public override bool WantInvokeDispatch()
+        {
             return true;
         }
     }

@@ -4,7 +4,7 @@ namespace XRL.World.ZoneBuilders
 {
     public class helado_Mycopei_FungalCave
     {
-        public const string OUTER_BLUEPRINT = "Shale";
+        public const string OUTER_BLUEPRINT = "Mudroot";
         public const string INNER_BLUEPRINT = "helado_Mycopei_Fungal Wall";
         public const double OUTER_ELLIPSE_CENTER_X = 40.0;
         public const double OUTER_ELLIPSE_CENTER_Y = 12.0;
@@ -69,6 +69,10 @@ namespace XRL.World.ZoneBuilders
                 }
 
                 ellipsesToPlace--;
+
+                if (ellipsesToPlace == 0) {
+                    zone.GetCell(centerX, centerY).AddObject("StairsDown");
+                }
             }
 
             return true;

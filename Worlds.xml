@@ -18,6 +18,7 @@
 
             <zone Level="11-14" x="1" y="1" Name="fungal cave">
                 <builder Class="helado_Mycopei_FungalCave" />
+                <builder Class="Music" Track="ofChromeAndHow" />
                 <builder Class="Population" Table="helado_Mycopei_Fungal Cave" />
             </zone>
         </cell>

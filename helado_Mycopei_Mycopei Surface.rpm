@@ -1,6 +1,6 @@
 <Map>
     <cell X="0" Y="0">
-        <object Name="Grassy" />
+        <object Name="Mushroomy" />
     </cell>
 
     <cell X="79" Y="24" />

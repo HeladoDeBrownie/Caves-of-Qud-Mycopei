@@ -1,0 +1,14 @@
+<populations>
+    <population Name="helado_Mycopei_Fungal Cave">
+        <group Name="Contents" Style="pickeach">
+            <!-- # Widgets -->
+
+            <object Blueprint="helado_Mycopei_Fungal Influence Widget" />
+            <object Blueprint="Mushroomy" />
+
+            <!-- # Creatures -->
+
+            <object Blueprint="helado_Mycopei_Fungal Drone" Number="3-7" />
+        </group>
+    </population>
+</populations>

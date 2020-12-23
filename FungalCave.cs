@@ -32,8 +32,6 @@ namespace XRL.World.ZoneBuilders
                 Seed: $"helado_Mycopei_FungalCave_{zone.ZoneID}"
             );
 
-            zone.GetCell(0, 0).AddObject("Mushroomy");
-
             foreach (var cell in zone.LoopCells())
             {
                 var x = cell.X;

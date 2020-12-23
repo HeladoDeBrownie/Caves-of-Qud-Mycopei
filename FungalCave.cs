@@ -4,7 +4,22 @@ namespace XRL.World.ZoneBuilders
 {
     public class helado_Mycopei_FungalCave
     {
-        private bool InEllipse(double x, double y, double centerX, double centerY, double radiusX, double radiusY) {
+        public const string OUTER_BLUEPRINT = "Shale";
+        public const string INNER_BLUEPRINT = "helado_Mycopei_Fungal Wall";
+        public const double OUTER_ELLIPSE_CENTER_X = 40.0;
+        public const double OUTER_ELLIPSE_CENTER_Y = 12.0;
+        public const double OUTER_ELLIPSE_RADIUS_X = 35.0;
+        public const double OUTER_ELLIPSE_RADIUS_Y = 10.0;
+
+        private bool InEllipse(
+            double x,
+            double y,
+            double centerX = OUTER_ELLIPSE_CENTER_X,
+            double centerY = OUTER_ELLIPSE_CENTER_Y,
+            double radiusX = OUTER_ELLIPSE_RADIUS_X,
+            double radiusY = OUTER_ELLIPSE_RADIUS_Y
+        )
+        {
             return
                 Math.Pow(x - centerX, 2.0) / Math.Pow(radiusX, 2.0) +
                 Math.Pow(y - centerY, 2.0) / Math.Pow(radiusY, 2.0)
@@ -14,25 +29,44 @@ namespace XRL.World.ZoneBuilders
         public bool BuildZone(Zone zone)
         {
             var RandomSource = XRL.Rules.Stat.GetSeededRandomGenerator(
-                Seed: $"helado_Mycopei_FungalCave {zone.ZoneID}"
+                Seed: $"helado_Mycopei_FungalCave_{zone.ZoneID}"
             );
 
-            zone.Fill(Blueprint: "helado_Mycopei_Fungal Wall");
-            var ovalsToPlace = 7;
+            foreach (var cell in zone.LoopCells())
+            {
+                var x = cell.X;
+                var y = cell.Y;
 
-            while (ovalsToPlace > 0) {
-                var centerX = RandomSource.Next(8, 80 - 8);
-                var centerY = RandomSource.Next(8, 25 - 8);
-                var radiusX = RandomSource.Next(2, 7);
-                var radiusY = RandomSource.Next(2, 7);
+                cell.AddObject(Blueprint:
+                    InEllipse(x, y) ? INNER_BLUEPRINT
+                                    : OUTER_BLUEPRINT
+                );
+            }
 
-                foreach (var cell in zone.LoopCells()) {
-                    if (InEllipse(cell.X, cell.Y, centerX, centerY, radiusX, radiusY)) {
+            var ellipsesToPlace = RandomSource.Next(5, 11);
+
+            while (ellipsesToPlace > 0)
+            {
+                var centerX = RandomSource.Next(4, 80 - 4);
+                var centerY = RandomSource.Next(4, 25 - 4);
+                var radiusX = RandomSource.Next(5, 11);
+                var radiusY = RandomSource.Next(5, 11);
+
+                foreach (var cell in zone.LoopCells())
+                {
+                    var x = cell.X;
+                    var y = cell.Y;
+
+                    if (
+                        InEllipse(x, y) &&
+                        InEllipse(x, y, centerX, centerY, radiusX, radiusY)
+                    )
+                    {
                         cell.Clear();
                     }
                 }
 
-                ovalsToPlace--;
+                ellipsesToPlace--;
             }
 
             return true;
